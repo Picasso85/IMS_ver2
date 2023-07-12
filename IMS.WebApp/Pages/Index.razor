@@ -1,0 +1,34 @@
+﻿
+@page "/"
+
+@inject IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+@inject IEditInventoryUseCase EditInventoryUseCase
+
+<h1>TesT PagE</h1>
+
+<PageTitle>Test Page</PageTitle>
+
+<br/>
+<ul>
+    @foreach(var inv in _inventories)
+    {
+    <li>
+        @inv.InventoryName
+    </li>
+    }
+</ul>
+
+@code {
+    private List<Inventory> _inventories = new List<Inventory>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _inventories = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList();
+
+        //var inventory = new Inventory { InventoryId = 1, InventoryName = "Laptop X-2343", Quantity = 120, Price = 999.99 };
+
+        //await EditInventoryUseCase.ExecuteAsync(inventory);
+
+       _inventories = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList();
+    }
+}

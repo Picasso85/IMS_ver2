@@ -1,0 +1,50 @@
+﻿@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+@if (Inventories != null && Inventories.Count > 0)
+{
+    foreach (var inv in Inventories)
+    {
+        <tr>
+            <td>@inv.InventoryId</td>
+            <td>@inv.InventoryName</td>
+            <td>@inv.Quantity</td>
+            <td>@inv.Price.ToString("c")</td>
+            <td>
+                <button type="button" class="btn btn-sm btn-outline-primary paddingIcon" @onclick="(() => EditInventory(inv.InventoryId))"><i class="bi bi-pencil-square"></i></button>
+                <button type="button" class="btn btn-sm btn-danger paddingIcon" @onclick="() => RemoveItem(inv.InventoryId)"><i class="bi bi-trash"></i></button>
+            </td>
+        </tr>
+    }
+}
+
+@code {
+    [Parameter]
+
+    public List<Inventory> Inventories { get; set; } = new List<Inventory>();
+
+    private void EditInventory(int inventoryId)
+
+    {
+        NavigationManager.NavigateTo($"/editInventory/{inventoryId}");
+    }
+
+    private async Task RemoveItem(int inventoryId)
+
+    {
+        var index = Inventories.FindIndex(inv => inv.InventoryId == inventoryId);
+
+        if (index != -1)
+        {
+            var confirmed = await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this item?");
+
+            if (confirmed)
+
+            {
+
+                Inventories.RemoveAt(index);
+
+            }
+        }
+    }
+}

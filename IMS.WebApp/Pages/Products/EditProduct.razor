@@ -1,0 +1,122 @@
+﻿@page "/editproduct/{id:int}"
+
+@inject IViewProductByIdUseCase ViewProductByIdUseCase
+@inject NavigationManager NavigationManager
+@inject IEditProductUseCase EditProductUseCase 
+
+<h3>Edit Product</h3>
+<br />
+
+@if (this.product != null)
+{
+    <EditForm Model="product" OnValidSubmit="SaveProduct">
+    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+    <button type="button" class="btn btn-sm btn-primary" @onclick="Cancel">Cancel</button>    
+    <table class="table table-responsive-sm">
+    <thead class="thead-dark">
+       <tr>
+          <th class="col-5">Product</th>
+          <th class="col-7">Search Components / Components</th>
+       </tr>      
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="form-group ">
+                    <label for="name">Product Name</label>
+                    <InputText 
+                    id="name" 
+                    @bind-Value="product.ProductName"
+                    class="form-control">
+                </InputText>
+                </div>
+            </td>           
+            <td rowspan="7">
+                <label for="invs">Inventories</label>
+                <ProductInventoriesComponent Product="this.product"></ProductInventoriesComponent>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <InputNumber 
+                    id="quantity" 
+                    @bind-Value="product.Quantity"
+                    class="form-control">
+                    </InputNumber>
+                </div>
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <InputNumber 
+                    id="price" 
+                    @bind-Value="product.Price"
+                    class="form-control">
+                    </InputNumber>
+                </div>
+            </td>            
+        </tr>
+        <tr>
+            <td rowspan="20">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <ValidationSummary></ValidationSummary>
+            </td>            
+        </tr>
+        <tr>            
+        </tr>
+        <tr>
+            
+            <td>
+                
+            </td>
+        </tr>
+        <tr>           
+            <td rowspan="14">               
+            </td>
+        </tr>
+    </tbody>
+</table>      
+</EditForm>
+}
+@code {
+    private Product? product;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        this.product = await ViewProductByIdUseCase.ExecuteAsync(this.Id);
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/products");
+    }
+
+    private async Task SaveProduct()
+    {
+        if (this.product != null)
+        {
+            await EditProductUseCase.ExecuteAsync(this.product);    
+        }
+        NavigationManager.NavigateTo("/products");
+    }
+
+    [Parameter]
+    public Product Product { get; set; } = new Product();
+
+    private void RemoveInventory(ProductInventory productInventory)
+    {
+        this.Product.ProductInventories.Remove(productInventory);
+    }
+
+    private void OnInventorySelected(Inventory inventory)
+    {
+        this.Product.AddInventory(inventory);
+    }
+}

@@ -1,0 +1,43 @@
+﻿@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+@foreach (var prod in Products)
+{
+    <tr>
+        <td>@prod.ProductId</td>
+        <td>@prod.ProductName</td>
+        <td>@prod.Quantity</td>
+        <td>@prod.Price.ToString("c")</td>
+        
+        <td>
+            <button 
+                type="button" 
+                class="btn btn-sm btn-outline-primary paddingIcon"
+                @onclick="@(() =>EditProduct(prod))"
+            ><i class="bi bi-pencil-square"></i></button>
+            <button type="button" class="btn btn-sm btn-danger paddingIcon" @onclick="() => RemoveProduct(prod)"><i class=" bi bi-trash"></i></button>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public List<Product> Products { get; set; } = new List<Product>();
+
+    private void EditProduct(Product product)
+    {
+        NavigationManager.NavigateTo($"/editproduct/{product.ProductId}");
+    }
+
+    //private void RemoveInventory(ProductInventory productInventory)
+    //{
+    //    this.Product.ProductInventories.Remove(productInventory);
+    //}
+
+    private void RemoveProduct(Product product)
+    {
+        Products.Remove(product);
+    }
+    
+
+}

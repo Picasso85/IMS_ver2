@@ -1,0 +1,40 @@
+﻿@*@using System.Collections.Generic
+
+<div>
+    <button disabled="@IsFirstPage" @onclick="GoToPreviousPage">Previous</button>
+    <span>Page @CurrentPage of @TotalPages</span>
+    <button disabled="@IsLastPage" @onclick="GoToNextPage">Next</button>
+</div>
+
+@code {
+    [Parameter]
+    public int ItemsPerPage { get; set; } = 10;
+    [Parameter]
+    public List<object> Items { get; set; }
+    [Parameter]
+    public EventCallback<int> CurrentPage { get; set; }
+    private bool IsFirstPage => _currentPage == 1;
+    private bool IsLastPage => _currentPage == TotalPages;
+    private int _currentPage { get; set; } = 1;
+    private int TotalPages => (int)Math.Ceiling((double)Items.Count / ItemsPerPage);
+
+    private async Task GoToNextPage()
+    {
+        if (!IsLastPage)
+        {
+            _currentPage++;
+
+            await CurrentPage.InvokeAsync(_currentPage);
+        }
+    }
+
+    private async Task GoToPreviousPage()
+    {
+        if (!IsFirstPage)
+        {
+            _currentPage--;
+
+            await CurrentPage.InvokeAsync(_currentPage);
+        }
+    }
+}*@

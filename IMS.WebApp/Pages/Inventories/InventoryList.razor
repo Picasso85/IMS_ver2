@@ -1,0 +1,55 @@
+﻿@page "/inventories"
+@inject NavigationManager NavigationManager
+@inject IInventoryRepository InventoryRepository
+
+
+<h3>Inventory List</h3>
+<br/>
+<SearchInventoryComponent OnSearchInventory="OnInventorySearch"> 
+</SearchInventoryComponent>
+<br/>
+<button type="button" class="btn btn-primary" @onclick="AddInventory"><i class="bi bi-plus-square" style="padding:0 0.5rem 0 0;"></i>Add Inventory</button>
+<br/>
+<InventoryListComponent SearchTerm="@searchTerm" ListInventories="@items"></InventoryListComponent>
+@*<PageComponent CurrentPage="OnCurrentPageChange"></PageComponent>*@
+
+
+@code {
+
+    private List<Inventory> items { get; set; } = new();
+
+    private string searchTerm = string.Empty;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await OnCurrentPageChange(0);
+    //}
+
+    private void OnInventorySearch(string searchTerm)
+    {
+        this.searchTerm = searchTerm;
+    }
+
+    private void AddInventory()
+    {
+        NavigationManager.NavigateTo("/addinventory");
+    }
+
+    //private async Task OnCurrentPageChange(int currentPage)
+    //{
+    //    var result = InventoryRepository.GetPageByNameAsync(string.Empty, currentPage);
+
+    //    await result;
+
+    //    if (result.IsCompleted)
+
+    //    {
+    //        items = result.Result.ToList();
+    //        await InvokeAsync(StateHasChanged);
+
+    //    }
+    //}
+
+    
+
+}

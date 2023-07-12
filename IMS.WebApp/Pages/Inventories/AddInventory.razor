@@ -1,0 +1,33 @@
+﻿@page "/addinventory"
+
+@inject NavigationManager NavigationManager
+@inject IAddInventoryUseCase AddInventoryUseCase
+@inject IJSRuntime js
+
+<FormComponent></FormComponent>
+
+@code {
+
+    private Inventory inventory = new Inventory();
+
+    protected async override Task OnAfterRenderAsync(bool firstrender)
+    {
+        if(firstrender)
+        {
+            await js.InvokeVoidAsync("focusById", "name"); 
+        }
+    }
+
+    private async Task SaveInventory()
+    {
+        await AddInventoryUseCase.ExecuteAsync(inventory);
+        NavigationManager.NavigateTo("/inventories");
+    }
+
+    private void Back()
+    {
+        NavigationManager.NavigateTo("/inventories");
+    }
+
+
+}

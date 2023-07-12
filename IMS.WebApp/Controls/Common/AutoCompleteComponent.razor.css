@@ -1,0 +1,19 @@
+﻿
+.search-results {
+    overflow-y: auto;
+    max-height: 15rem;
+    border: 1px solid silver;
+    padding-top: 1rem
+}
+
+div ul {
+    list-style: none;
+}
+
+div ul li {
+    cursor: pointer;
+}
+.selected {
+    background-color:darkgray;
+    color:lightgray;
+}
