@@ -75,3 +75,27 @@ body {
 }
 
 
+@media print {
+
+    body * {
+        top:0;
+        visibility:hidden;
+    }
+
+    #printarea, #printarea * {
+        visibility:visible;
+    }
+
+    #printarea {
+        position:absolute;
+        left:0;
+        top:0;
+    } 
+
+    .row {
+        height:5rem;
+    }
+
+    .table {
+        margin-top:1rem;
+}
