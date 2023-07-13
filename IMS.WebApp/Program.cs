@@ -23,6 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireClaim("Department", "Administration"));
+    options.AddPolicy("Inventory", policy => policy.RequireClaim("Department", "InventoryManagement"));
     options.AddPolicy("Sales", policy => policy.RequireClaim("Department", "Sales"));
     options.AddPolicy("Purchases", policy => policy.RequireClaim("Department", "Purchasing"));
     options.AddPolicy("Productions", policy => policy.RequireClaim("Department", "ProductionManagement"));
@@ -121,9 +122,18 @@ app.UseAuthorization();
 
 // standard
 
+
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
+
 app.UseRouting();
+
+//need be betwen UseRouting & endpoint
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
 app.Run();

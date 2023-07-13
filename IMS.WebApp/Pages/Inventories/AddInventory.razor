@@ -4,6 +4,10 @@
 @inject IAddInventoryUseCase AddInventoryUseCase
 @inject IJSRuntime js
 
+@*Policy ProductManagement*@
+
+@attribute [Authorize(Policy = "Inventory")]
+
 <FormComponent></FormComponent>
 
 @code {

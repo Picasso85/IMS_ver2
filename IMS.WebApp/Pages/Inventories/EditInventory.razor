@@ -5,6 +5,10 @@
 @inject IEditInventoryUseCase EditInventoryUseCase
 @inject IJSRuntime js
 
+@*Policy ProductManagement*@
+
+@attribute [Authorize(Policy = "Inventory")]
+
 <h3>Edit Inventory</h3>
 <br/>
 You Edit Item Id :@InvId
