@@ -76,7 +76,6 @@ namespace IMS.Plugins.InMemory
         public async Task<IEnumerable<Product>> GetProductsByNameAsync(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) return await Task.FromResult(_products);
-
             return _products.Where(x => x.ProductName.Contains(name, StringComparison.OrdinalIgnoreCase));
         }
 
