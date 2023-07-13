@@ -104,7 +104,57 @@ namespace IMS.Plugins.EFCoreSqlServer
                 new ProductInventory() { ProductId = 1, InventoryId = 16, InventoryQuantity = 1 },  // memory
                 new ProductInventory() { ProductId = 1, InventoryId = 18, InventoryQuantity = 1 },  // ssd
                 new ProductInventory() { ProductId = 1, InventoryId = 28, InventoryQuantity = 1 },  // Graphic Card
-                new ProductInventory() { ProductId = 1, InventoryId = 40, InventoryQuantity = 1 }   // Power Supply
+                new ProductInventory() { ProductId = 1, InventoryId = 21, InventoryQuantity = 1 },  // Power Supply
+
+                // Custom PC-CR2000 
+
+                new ProductInventory() { ProductId = 2, InventoryId = 14, InventoryQuantity = 1 },   // case
+                new ProductInventory() { ProductId = 2, InventoryId = 3, InventoryQuantity = 1 },   // Motherboard
+                new ProductInventory() { ProductId = 2, InventoryId = 12, InventoryQuantity = 1 },  // cpu
+                new ProductInventory() { ProductId = 2, InventoryId = 16, InventoryQuantity = 1 },  // memory
+                new ProductInventory() { ProductId = 2, InventoryId = 23, InventoryQuantity = 1 },  // ssd
+                new ProductInventory() { ProductId = 2, InventoryId = 28, InventoryQuantity = 1 },  // Graphic Card
+                new ProductInventory() { ProductId = 2, InventoryId = 22, InventoryQuantity = 1 },  // Power Supply
+
+                // Custom PC-CR3000 
+
+                new ProductInventory() { ProductId = 3, InventoryId = 15, InventoryQuantity = 1 },   // case
+                new ProductInventory() { ProductId = 3, InventoryId = 4, InventoryQuantity = 1 },   // Motherboard
+                new ProductInventory() { ProductId = 3, InventoryId = 13, InventoryQuantity = 1 },  // cpu
+                new ProductInventory() { ProductId = 3, InventoryId = 16, InventoryQuantity = 1 },  // memory
+                new ProductInventory() { ProductId = 3, InventoryId = 24, InventoryQuantity = 1 },  // ssd
+                new ProductInventory() { ProductId = 3, InventoryId = 28, InventoryQuantity = 1 },  // Graphic Card
+                new ProductInventory() { ProductId = 3, InventoryId = 23, InventoryQuantity = 1 },   // Power Supply
+
+                // Custom PC-CR4000 
+
+                new ProductInventory() { ProductId = 4, InventoryId = 34, InventoryQuantity = 1 },   // case
+                new ProductInventory() { ProductId = 4, InventoryId = 5, InventoryQuantity = 1 },   // Motherboard
+                new ProductInventory() { ProductId = 4, InventoryId = 11, InventoryQuantity = 1 },  // cpu
+                new ProductInventory() { ProductId = 4, InventoryId = 16, InventoryQuantity = 1 },  // memory
+                new ProductInventory() { ProductId = 4, InventoryId = 25, InventoryQuantity = 1 },  // ssd
+                new ProductInventory() { ProductId = 4, InventoryId = 29, InventoryQuantity = 1 },  // Graphic Card
+                new ProductInventory() { ProductId = 4, InventoryId = 40, InventoryQuantity = 1 },  // Power Supply
+
+                // Custom PC-CR5000 
+
+                new ProductInventory() { ProductId = 5, InventoryId = 35, InventoryQuantity = 1 },   // case
+                new ProductInventory() { ProductId = 5, InventoryId = 6, InventoryQuantity = 1 },   // Motherboard
+                new ProductInventory() { ProductId = 5, InventoryId = 31, InventoryQuantity = 1 },  // cpu
+                new ProductInventory() { ProductId = 5, InventoryId = 37, InventoryQuantity = 1 },  // memory
+                new ProductInventory() { ProductId = 5, InventoryId = 38, InventoryQuantity = 1 },  // ssd
+                new ProductInventory() { ProductId = 5, InventoryId = 39, InventoryQuantity = 1 },  // Graphic Card
+                new ProductInventory() { ProductId = 5, InventoryId = 40, InventoryQuantity = 1 },  // Power Supply
+
+                // Custom PC-CR6000 
+
+                new ProductInventory() { ProductId = 6, InventoryId = 35, InventoryQuantity = 1 },   // case
+                new ProductInventory() { ProductId = 6, InventoryId = 7, InventoryQuantity = 1 },   // Motherboard
+                new ProductInventory() { ProductId = 6, InventoryId = 32, InventoryQuantity = 1 },  // cpu
+                new ProductInventory() { ProductId = 6, InventoryId = 36, InventoryQuantity = 1 },  // memory
+                new ProductInventory() { ProductId = 6, InventoryId = 38, InventoryQuantity = 1 },  // ssd
+                new ProductInventory() { ProductId = 6, InventoryId = 39, InventoryQuantity = 1 },  // Graphic Card
+                new ProductInventory() { ProductId = 6, InventoryId = 40, InventoryQuantity = 1 }   // Power Supply
                 );
         }
     }

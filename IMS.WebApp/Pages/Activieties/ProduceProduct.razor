@@ -8,7 +8,10 @@
 
 @inject IJSRuntime JSRuntime
 
-@attribute [Authorize(Policy = "Productions")]
+@*Policy ProductManagement*@
+
+@attribute [Authorize(Policy ="Productions")]
+
 
 <h3>Produce Product</h3>
 <br/>
@@ -87,22 +90,18 @@
     private async Task Produce()
     {
 
-        await ProduceProductUseCase.ExecuteAsync(
-            this.produceViewModel.ProductionNumber,
-            this.selectedProduct,
-            this.produceViewModel.QuantityToProduce,
-            "Pablo");
+        // for login stuff
 
-        //if (this.selectedProduct != null &&
-        //    authenticationState != null &&
-        //    !string.IsNullOrWhiteSpace(authenticationState.User?.Identity?.Name)
-        //)
-        //{
-        //    await ProduceProductUseCase.ExecuteAsync(this.produceViewModel.ProductionNumber,
-        //       this.selectedProduct,
-        //       this.produceViewModel.QuantityToProduce,
-        //       authenticationState.User.Identity.Name);
-        //}
+        if (this.selectedProduct != null &&
+            authenticationState != null &&
+            !string.IsNullOrWhiteSpace(authenticationState.User?.Identity?.Name)
+        )
+        {
+            await ProduceProductUseCase.ExecuteAsync(this.produceViewModel.ProductionNumber,
+               this.selectedProduct,
+               this.produceViewModel.QuantityToProduce,
+               authenticationState.User.Identity.Name);
+        }
 
         this.produceViewModel = new ProduceViewModel();
         this.selectedProduct = null;

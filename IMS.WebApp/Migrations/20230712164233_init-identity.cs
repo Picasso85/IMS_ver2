@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace IMS.WebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class initidentity : Migration
+    public partial class Initidentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

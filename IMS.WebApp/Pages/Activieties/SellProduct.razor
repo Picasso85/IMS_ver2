@@ -6,6 +6,8 @@
 @inject ISellProductUseCase SellProductUseCase
 @inject IJSRuntime JSRuntime
 
+@*Policy Selling*@
+
 @attribute [Authorize(Policy = "Sales")]
 
 <h3>Sell Product</h3>
@@ -85,22 +87,25 @@
         sellViewModel.UnitPrice = this.selectedProduct.Price;
     }
 
-    private async Task Sell()
-    
-        
+    private async Task Sell()      
+    {
+        if (this.sellViewModel.Product != null &&
+            authenticationState != null &&
+            !string.IsNullOrWhiteSpace(authenticationState.User?.Identity?.Name)
+        )
         {
             await SellProductUseCase.ExecuteAsync(
                 this.sellViewModel.SalesOrderNumber,
                 this.sellViewModel.Product,
                 this.sellViewModel.QuantityToSell,
                 this.sellViewModel.UnitPrice,
-                "Pablo"
-                
+                authenticationState.User.Identity.Name
             );
-
-            this.sellViewModel = new SellViewModel();
-            this.selectedProduct = null;
         }
+
+        this.sellViewModel = new SellViewModel();
+        this.selectedProduct = null;
+    }
 
         
     

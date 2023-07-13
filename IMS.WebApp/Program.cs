@@ -17,6 +17,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// configure authorization
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireClaim("Department", "Administration"));
+    options.AddPolicy("Sales", policy => policy.RequireClaim("Department", "Sales"));
+    options.AddPolicy("Purchases", policy => policy.RequireClaim("Department", "Purchasing"));
+    options.AddPolicy("Productions", policy => policy.RequireClaim("Department", "ProductionManagement"));
+}
+);
+
 var constr = builder.Configuration.GetConnectionString("InventoryManagement");
 
 //Configure EF Core for Identify
@@ -50,7 +62,7 @@ builder.Services.AddDbContextFactory<IMSContext>(
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-// lifetime management 
+// lifetime management + stuff for testing
 if (builder.Environment.IsEnvironment("Testing"))
 {
     StaticWebAssetsLoader.UseStaticWebAssets(builder.Environment, builder.Configuration);

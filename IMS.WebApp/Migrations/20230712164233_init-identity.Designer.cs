@@ -13,7 +13,7 @@ namespace IMS.WebApp.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
     [Migration("20230712164233_init-identity")]
-    partial class initidentity
+    partial class Initidentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
