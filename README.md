@@ -3,7 +3,6 @@ i like comments but i dont like write comments
 
 app about inventory system plus some extra stuff :P
 
-6-12 tutorials in one...
 
 abaut :
 
